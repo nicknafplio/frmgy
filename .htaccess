@@ -1,8 +1,8 @@
 RewriteEngine On
 
-# Redirect direct requests for /page.html to the clean /page URL
-RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L,NE]
+# Redirect direct requests for page.html to the clean URL (works at domain root or in a subfolder)
+RewriteCond %{THE_REQUEST} \s[^\s?]+\.html[\s?] [NC]
+RewriteRule ^(.+)\.html$ $1 [R=301,L,NE]
 
 # Serve /page from page.html
 RewriteCond %{REQUEST_FILENAME} !-f
